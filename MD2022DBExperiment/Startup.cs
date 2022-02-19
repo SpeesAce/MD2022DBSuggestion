@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MD2022DBExperiment.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MD2022DBExperiment
 {
@@ -24,6 +24,45 @@ namespace MD2022DBExperiment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //Add DB Context with Identity
+            var dbConn = Configuration.GetConnectionString("Default");
+            services.AddDbContext<Context>(options => options.UseSqlServer(dbConn)).AddIdentity<AppUser, IdentityRole>(config =>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequiredLength = 4;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<Context>()
+            .AddDefaultTokenProviders();
+            services.Configure<DataProtectionTokenProviderOptions>(o =>
+                             o.TokenLifespan = TimeSpan.FromHours(1)); ;
+
+            //Authentication
+            services.AddAuthentication(
+                    CookieAuthenticationDefaults.AuthenticationScheme
+                ).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.LoginPath = "/Account/Login";
+                    });
+
+
+            // supplementary policies, to be used when we need a mix of roles
+            services.AddAuthorization(options =>
+            options.AddPolicy("admin", policy => policy.RequireRole("admin")));
+
+            // groupleader
+            services.AddAuthorization(options =>
+            options.AddPolicy("groupleader", policy => policy.RequireRole("groupleader")));
+
+            // standard users
+            services.AddAuthorization(options =>
+            options.AddPolicy("user", policy => policy.RequireRole("user")));
+
+            //Speaker
+            services.AddAuthorization(options =>
+            options.AddPolicy("speaker", policy => policy.RequireRole("speaker")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +70,15 @@ namespace MD2022DBExperiment
         {
             if (env.IsDevelopment())
             {
+                //Workaround to drop & build DB in EF 5 core, entities can be modified freely 
                 app.UseDeveloperExceptionPage();
+                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<Context>();
+                    context.Database.EnsureDeleted();
+                    context.Database.EnsureCreated();
+                    //seed()
+                }
             }
             else
             {
