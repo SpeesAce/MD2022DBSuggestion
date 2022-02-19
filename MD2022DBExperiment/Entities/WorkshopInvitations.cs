@@ -28,6 +28,6 @@ namespace MD2022DBExperiment.Entities
 
         //Bit value to track whether invitation is accepted
         [Required]
-        public bool Accepted { get; set} = false;
+        public bool Accepted { get; set; } = false;
     }
 }
