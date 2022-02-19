@@ -24,7 +24,7 @@ namespace MD2022DBExperiment.Entities
         [EmailAddress]
         public string Email { get; set; }
 
-        //Refers to the group of which the member is part of
+        //Refers to the group of which the member belongs to
         [Required]
         public Groups Group { get; set; }
 
