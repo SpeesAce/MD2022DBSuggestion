@@ -30,6 +30,6 @@ namespace MD2022DBExperiment.Entities
 
         //public string FieldOfExpertise {get;set;}
 
-        //public string available {get;set;} //in case a guest speaker would get a login to manage his account
+        //public string available {get;set;} //In case a guest speaker would get a login to manage his account
     }
 }

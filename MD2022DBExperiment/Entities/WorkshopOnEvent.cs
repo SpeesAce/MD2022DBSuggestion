@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MD2022DBExperiment.Entities
 {
-    //An actual Scheduled workshop
+    //An actual Scheduled workshop, replaces timeslot
     public class WorkshopOnEvent
     {
         [Key]
