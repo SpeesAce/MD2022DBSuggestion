@@ -26,7 +26,7 @@ namespace MD2022DBExperiment.Entities
 
         //The organisation to which the leader belongs
         [Required]
-        public Organisations Organisation { get; set; }
+        public String Organisation { get; set; }
 
         //His function within his organisation
         [Required]

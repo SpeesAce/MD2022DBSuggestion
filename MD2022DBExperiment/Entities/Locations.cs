@@ -7,22 +7,19 @@ using System.Threading.Tasks;
 
 namespace MD2022DBExperiment.Entities
 {
-    //Holds the Administrators 
-    public class Administrators
+    public class Locations
     {
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
-
+        //Name (perhaps VIVES classroom namingconvention in the future, Admin's responsibility atm)
         [Required]
         public string Name { get; set; }
 
+        //Maximum number of participants possible for a specific location
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
+        public int MaxParticipants { get; set; }
     }
 }

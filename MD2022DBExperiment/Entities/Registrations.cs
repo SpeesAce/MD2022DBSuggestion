@@ -15,7 +15,7 @@ namespace MD2022DBExperiment.Entities
         public int ID { get; set; }
 
         //A scheduled workshop
-        public WorkshopOnEvent WorkshopRegistration { get; set; }
+        public Timeslots WorkshopRegistration { get; set; }
 
         //The participant of the workshop
         public GroupMembers GroupMember { get; set; }

@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace MD2022DBExperiment.Entities
 {
-    //Holds the organisations to which groupleaders & groupmembers belong to
-    public class Organisations
+    public class SpeakerAllocations
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public Speakers speaker { get; set; }
 
-        [Required]
-        public string Address { get; set; }
+        public Timeslots Timeslot { get; set; }
     }
 }

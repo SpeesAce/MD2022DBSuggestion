@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MD2022DBExperiment.Entities
 {
     //An actual Scheduled workshop, replaces timeslot
-    public class WorkshopOnEvent
+    public class Timeslots
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,24 +22,12 @@ namespace MD2022DBExperiment.Entities
         [Required]
         public Events Event { get; set; }
 
-        //The guest speaker for this specifc workshop
-        [Required]
-        public Speakers Speaker { get; set; }
-
         //Start time of this workshop
         [Required]
         public DateTime StartTime { get; set; }
 
-        //End time of this workshop
+        //Set Location for this workshop
         [Required]
-        public DateTime EndTime { get; set; }
-
-        //Depends if number of possible participants is set by location capacity
-        [Required]
-        public int MaxParticipants { get; set; }
-
-        //Could be a hardcoded string for now or refering to a Location class later on
-        [Required]
-        public string Location { get; set; }
+        public Locations Location { get; set; }
     }
 }

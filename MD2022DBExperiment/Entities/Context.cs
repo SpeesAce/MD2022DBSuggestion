@@ -13,7 +13,7 @@ namespace MD2022DBExperiment.Entities
         public Context(DbContextOptions<Context> options) : base(options) { }
 
         //Tables---------------------------------------------------------------------
-        public DbSet<Administrators> Admins { get; set; }
+        //public DbSet<Administrators> Admins { get; set; }
 
         public DbSet<Events> Events { get; set; }
 
@@ -23,13 +23,17 @@ namespace MD2022DBExperiment.Entities
 
         public DbSet<Groups> Groups { get; set; }
 
-        public DbSet<Organisations> Organisations { get; set; }
+        //public DbSet<Organisations> Organisations { get; set; }
 
         public DbSet<Speakers> Speakers { get; set; }
 
         public DbSet<Workshops> Workshops { get; set; }
 
-        public DbSet<WorkshopOnEvent> WorkshopsOnEvent { get; set; }
+        public DbSet<SpeakerAllocations> SpeakerAllocations { get; set; }
+
+        public DbSet<Locations> Locations { get; set; }
+
+        public DbSet<Timeslots> Timeslots { get; set; }
 
         public DbSet<WorkshopInvitations> WorkshopInvitations { get; set; }
 
@@ -38,11 +42,6 @@ namespace MD2022DBExperiment.Entities
         //Additional constraints-----------------------------------------------------
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Administrators>()
-                .HasIndex(p => p.Email)
-                .IsUnique();
-            base.OnModelCreating(builder);
-
             builder.Entity<GroupLeaders>()
                 .HasIndex(p => p.Email)
                 .IsUnique();

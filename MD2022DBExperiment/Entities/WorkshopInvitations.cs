@@ -20,7 +20,7 @@ namespace MD2022DBExperiment.Entities
 
         //The actual Scheduled workshop to which the groupmember is invited
         [Required]
-        public WorkshopOnEvent Workshop { get; set; }
+        public Timeslots Timeslots { get; set; }
 
         //The member that is invited to participate to a specific workshop
         [Required]
