@@ -33,7 +33,7 @@ namespace MD2022DBExperiment.Entities
         [Required]
         public string JobTitle { get; set; }
 
-               
+        [Required]       
         public IdentityUser User { get; set; } 
 
         //public DateTime Timestamp {get;set;}      //Could be used to track when a request was made
