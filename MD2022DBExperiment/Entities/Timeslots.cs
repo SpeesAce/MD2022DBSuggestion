@@ -12,15 +12,11 @@ namespace MD2022DBExperiment.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         //The workshop type
         [Required]
         public Workshops Workshop { get; set; }
-
-        //The event where the workshop is taking place
-        [Required]
-        public Events Event { get; set; }
 
         //Start time of this workshop
         [Required]

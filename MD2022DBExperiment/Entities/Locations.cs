@@ -12,11 +12,14 @@ namespace MD2022DBExperiment.Entities
         
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         //Name (perhaps VIVES classroom namingconvention in the future, Admin's responsibility atm)
         [Required]
         public string Name { get; set; }
+
+        //The information on the Location
+        public string Description { get; set; }
 
         //Maximum number of participants possible for a specific location
         [Required]

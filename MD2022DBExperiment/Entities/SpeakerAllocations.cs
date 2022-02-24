@@ -11,10 +11,10 @@ namespace MD2022DBExperiment.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required]
-        public Speakers speaker { get; set; }
+        public Speakers Speaker { get; set; }   //User
 
         public Timeslots Timeslot { get; set; }
     }

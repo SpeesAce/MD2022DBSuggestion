@@ -13,9 +13,7 @@ namespace MD2022DBExperiment.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
-        //public Administrators CreatedBy { get; set; }
+        public Guid ID { get; set; }
 
         [Required]
         public string Name { get; set; }

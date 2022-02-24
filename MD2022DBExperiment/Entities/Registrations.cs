@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace MD2022DBExperiment.Entities
 {
@@ -12,15 +13,17 @@ namespace MD2022DBExperiment.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         //A scheduled workshop
+        [Required]
         public Timeslots WorkshopRegistration { get; set; }
 
         //The participant of the workshop
-        public GroupMembers GroupMember { get; set; }
+        [Required]
+        public IdentityUser User { get; set; }
 
         //Timestamp of registration
-        public DateTime Timestamp { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

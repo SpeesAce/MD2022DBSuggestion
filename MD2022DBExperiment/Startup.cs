@@ -27,7 +27,7 @@ namespace MD2022DBExperiment
 
             //Add DB Context with Identity
             var dbConn = Configuration.GetConnectionString("Default");
-            services.AddDbContext<Context>(options => options.UseSqlServer(dbConn)).AddIdentity<AppUser, IdentityRole>(config =>
+            services.AddDbContext<Context>(options => options.UseSqlServer(dbConn)).AddIdentity<IdentityUser, IdentityRole>(config =>
             {
                 config.Password.RequireDigit = false;
                 config.Password.RequiredLength = 4;

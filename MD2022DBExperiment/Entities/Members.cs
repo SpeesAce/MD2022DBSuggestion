@@ -4,20 +4,21 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Identity;
 namespace MD2022DBExperiment.Entities
 {
-    public class GroupAllocations
+    //Holds the members of groups that can participate in workshops
+    public class Members
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
+
+
+        public IdentityUser User { get; set; }
         
-        [Required]
-        public Groups Group { get; set; }
+       
 
-        [Required]
-        public GroupMembers GroupMember { get; set; }
-
+        
     }
 }

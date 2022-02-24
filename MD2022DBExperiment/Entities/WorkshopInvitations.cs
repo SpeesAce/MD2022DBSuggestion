@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace MD2022DBExperiment.Entities
 {
@@ -12,7 +13,7 @@ namespace MD2022DBExperiment.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         //Timestamp on when invitation was send, can be used to track potential deadline to register
         //[Required]
@@ -24,10 +25,8 @@ namespace MD2022DBExperiment.Entities
 
         //The member that is invited to participate to a specific workshop
         [Required]
-        public GroupMembers GroupMember { get; set; }
+        public IdentityUser User { get; set; }
 
-        //Bit value to track whether invitation is accepted
-        [Required]
-        public bool Accepted { get; set; } = false;
+        
     }
 }

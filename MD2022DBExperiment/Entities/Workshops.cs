@@ -12,7 +12,7 @@ namespace MD2022DBExperiment.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         //The name of the workshop
         [Required]
@@ -21,6 +21,10 @@ namespace MD2022DBExperiment.Entities
         //The information on what the workshop is about
         [Required]
         public string Description { get; set; }
+
+        //Event
+        [Required]
+        public Events Event { get; set; }
 
         //How long the workshop lasts
         [Required]

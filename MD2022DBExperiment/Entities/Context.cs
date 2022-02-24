@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MD2022DBExperiment.Entities
 {
-    public class Context : IdentityDbContext<AppUser>
+    public class Context : IdentityDbContext<IdentityUser>
     {
         //Constructor called by startup----------------------------------------------
         public Context(DbContextOptions<Context> options) : base(options) { }
@@ -19,15 +20,15 @@ namespace MD2022DBExperiment.Entities
 
         public DbSet<GroupLeaders> Groupleaders { get; set; }
 
-        public DbSet<GroupMembers> GroupMembers { get; set; }
+        //public DbSet<Members> GroupMembers { get; set; }
 
         public DbSet<Groups> Groups { get; set; }
 
-        public DbSet<GroupAllocations> GroupAllocations { get; set; }
+        public DbSet<GroupMembers> GroupMembers { get; set; }
 
         //public DbSet<Organisations> Organisations { get; set; }
 
-        public DbSet<Speakers> Speakers { get; set; }
+        //public DbSet<Speakers> Speakers { get; set; }
 
         public DbSet<Workshops> Workshops { get; set; }
 
@@ -44,33 +45,11 @@ namespace MD2022DBExperiment.Entities
         //Additional constraints-----------------------------------------------------
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<GroupLeaders>()
-                .HasIndex(p => p.Email)
-                .IsUnique();
-            base.OnModelCreating(builder);
+                    
 
-            builder.Entity<GroupMembers>()
-                .HasIndex(p => p.Email)
-                .IsUnique();
-            base.OnModelCreating(builder);
+            
 
-            builder.Entity<Speakers>()
-                .HasIndex(e => e.Email)
-                .IsUnique();
-            base.OnModelCreating(builder);
-
-            //Default values----------------------------------------------------------
-            builder.Entity<GroupLeaders>()
-                .Property(b => b.Approved)
-                .HasDefaultValueSql("0");
-
-            builder.Entity<WorkshopInvitations>()
-                .Property(b => b.Accepted)
-                .HasDefaultValueSql("0");
-
-            builder.Entity<Registrations>()
-                .Property(b => b.Timestamp)
-                .HasDefaultValueSql("getDate()");
+            
 
         }
     }
