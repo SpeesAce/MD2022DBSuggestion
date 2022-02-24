@@ -7,23 +7,17 @@ using System.Threading.Tasks;
 
 namespace MD2022DBExperiment.Entities
 {
-    //Holds the members of groups that can participate in workshops
-    public class GroupMembers
+    public class GroupAllocations
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
-        [Required]
-        public string FirstName { get; set; }
-
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
         
+        [Required]
+        public Groups Group { get; set; }
+
+        [Required]
+        public GroupMembers GroupMember { get; set; }
+
     }
 }

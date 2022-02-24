@@ -11,8 +11,7 @@ namespace MD2022DBExperiment.Entities
     {
         public GroupLeaders Groupleaders { get; set; }
 
-        public GroupMembers GroupMembers { get; set; }
-        
+        public GroupMembers GroupMembers { get; set; }        
 
     }
 }

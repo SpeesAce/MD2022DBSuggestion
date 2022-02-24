@@ -23,6 +23,8 @@ namespace MD2022DBExperiment.Entities
 
         public DbSet<Groups> Groups { get; set; }
 
+        public DbSet<GroupAllocations> GroupAllocations { get; set; }
+
         //public DbSet<Organisations> Organisations { get; set; }
 
         public DbSet<Speakers> Speakers { get; set; }
@@ -65,10 +67,6 @@ namespace MD2022DBExperiment.Entities
             builder.Entity<WorkshopInvitations>()
                 .Property(b => b.Accepted)
                 .HasDefaultValueSql("0");
-
-            builder.Entity<WorkshopInvitations>()
-                .Property(b => b.TimeStamp)
-                .HasDefaultValueSql("getDate()");
 
             builder.Entity<Registrations>()
                 .Property(b => b.Timestamp)

@@ -15,8 +15,8 @@ namespace MD2022DBExperiment.Entities
         public int ID { get; set; }
 
         //Timestamp on when invitation was send, can be used to track potential deadline to register
-        [Required]
-        public DateTime TimeStamp { get; set; }
+        //[Required]
+        //public DateTime TimeStamp { get; set; }
 
         //The actual Scheduled workshop to which the groupmember is invited
         [Required]
